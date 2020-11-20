@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+        }
+        .box1 {
+            flex: 1;
+            background-color: skyblue;
+        }
+
+        .box2 {
+            height: 20px;
+            background-color: pink;
+        }
+
+        .box3 {
+            flex: 1;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+    <script>
+        // setTimeout(() => {
+        //     console.log('A');
+        // }, 0)
+        // var obj = {
+        //     func: function () {
+        //         setTimeout(function () {
+        //             console.log('B');
+        //         }, 0)
+        //         return new Promise(function (resolve) {
+        //             console.log('C');
+        //             resolve();
+        //         })
+        //     }
+        // }
+        // obj.func().then(function () {o
+        //     console.log('D');
+        // })
+        // console.log('E');  // CEDAB
+        function fun(n, o) {
+            console.log(o);
+            return {
+                fun: function (m) {
+                    return fun(m, n)
+                }
+            }
+        }
+        var a = fun(0); a.fun(1); a.fun(2); a.fun(3) // undefined 0 0 0
+        var b = fun(0).fun(1).fun(2).fun(3)          // undefined 0 1 2
+        var c = fun(0).fun(1); c.fun(2); c.fun(3)    // undefined 0 1 1
+
+    </script>
+</body>
+
+</html>
